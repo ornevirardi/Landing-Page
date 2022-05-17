@@ -1,26 +1,27 @@
+/*
+The nav bar is dynamically created with a basic for loop. The loop dynamically generates <li> elements, that have an <a> element inside. Using the method .appendChild we get the final result.
+
+The section near the top of the viewport is highlighted. First we check that the elements are in the viewport (referenced from the Knowledge section, the mentor literally wrote that we can use the code for this project -> https://knowledge.udacity.com/questions/85408#96950). The section that we are currently viewing will get a grey background
+
+The active section in the Navbar is highlighted.
+
+The document has smooth scrolling
+*/
+
+
 const navBarUl = document.getElementById("navbar__list");
 const sections = document.querySelectorAll("section");
 
-// build the nav using a loop
-
-//Using a basic for loop to create new elements. The loop starts with the i in 1 and goes to 4 because there are 4 sections, and we are using te i to assing the number of section dynamically.
 for (let i = 1; i <= 4; i++) {
   const newLi = document.createElement("li");
   newLi.className="navLi";
-  //Create the anchor to refference the section we will want to go. The html will look like <li><a></a></li>
   const newA = document.createElement("a");
-  //Adding the A (anchor) to the li
   newLi.appendChild(newA);
-  //Adding the href so it links to the sections with the proper id
   newA.setAttribute("href", "#section" + i);
   newA.innerText = "Section " + i;
   newA.setAttribute('id','anchor');
-
-  //appending everything to the nav bar
   navBarUl.appendChild(newLi);
 }
-
-// Add class 'active' to section when near top of viewport -> REFERENCED FROM KNOWLEDGE UDACITY https://knowledge.udacity.com/questions/85408#96950 it ltierally says we can use it for this specific project
 
 //checking elements in the viewport
 function isElementInViewport(el) {
@@ -34,11 +35,11 @@ function isElementInViewport(el) {
   );
 }
 
-//highlight active sections in grey or leave them with the default css
+//Highlight element that is being viewed
 function makeActive() {
   for (const section of sections) {
     const box = section.getBoundingClientRect();
-    if (box.top <= 150 && box.bottom >= 150) {
+    if (box.top <= 50 && box.bottom >= 50) {
       section.classList.add("your-active-class");
       section.style.cssText = "background-color: grey;";
     } else {
@@ -66,8 +67,6 @@ document.addEventListener("scroll", function() {
 //       if (windowTop >= $($(this).attr('href')).offset().top - 100) {
 //           // Remove 'active' from previously highlighted menu items
 //           $('.navLi .active').removeClass('active');
-  
-//           // Highlight the current menu item by adding 'active' class
 //           $(this).addClass('active');
 //       }
 //   });
@@ -84,7 +83,6 @@ document.addEventListener("scroll", function() {
       var val = currLink.getAttribute('href');
       var refElement = document.querySelector(val);
       if (refElement.offsetTop <= scrollPos && (refElement.offsetTop + refElement.offsetHeight > scrollPos)) {
-        //document.querySelector('#menu-center ul li a').classList.remove('active');
         currLink.classList.add('active');
       } else {
         currLink.classList.remove('active');
