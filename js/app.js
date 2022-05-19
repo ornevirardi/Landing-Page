@@ -99,3 +99,15 @@ function smoothScroll(){
   anchorNav.scrollIntoView({behavior: "smooth"})
 };
 navBarUl.addEventListener('click', smoothScroll());
+
+const sec1 = document.getElementById("s1");
+sec1.scrollIntoView({behavior: "smooth"});
+
+const sec2 = document.getElementById("s2");
+sec2.scrollIntoView({behavior: "smooth"});
+
+const sec3 = document.getElementById("s3");
+sec3.scrollIntoView({behavior: "smooth"});
+
+const sec4 = document.getElementById("s4");
+sec4.scrollIntoView({behavior: "smooth"});
