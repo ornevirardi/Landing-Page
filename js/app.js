@@ -80,7 +80,7 @@ document.addEventListener("scroll", function() {
     var navLiA = [...document.querySelectorAll('.navLi a')];
     var scrollPos = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
     navLiA.forEach(function(currLink) {
-      var val = currLink.getAttribute('href');
+      let val = currLink.getAttribute('href');
       var refElement = document.querySelector(val);
       if (refElement.offsetTop <= scrollPos && (refElement.offsetTop + refElement.offsetHeight > scrollPos)) {
         currLink.classList.add('active');
@@ -98,16 +98,19 @@ function smoothScroll(){
   const anchorNav = document.getElementById('anchor');
   anchorNav.scrollIntoView({behavior: "smooth"})
 };
+
 navBarUl.addEventListener('click', smoothScroll());
 
-const sec1 = document.getElementById("s1");
-sec1.scrollIntoView({behavior: "smooth"});
 
-const sec2 = document.getElementById("s2");
-sec2.scrollIntoView({behavior: "smooth"});
+//Per mentor correction: F(x) taken from knowledge @ udacity https://knowledge.udacity.com/questions/72618
+function scrollToId (){
+  const anchors = document.getElementsByTagName('a')
+  for (let i = 0; i < sections.length; i++) {
+      let element = sections[i];
+      let anchor = anchors[i];
+      const top = element.getBoundingClientRect().top + window.pageYOffset;
+      anchor.addEventListener('click', () => window.scroll({top, behavior: 'smooth'}))
+  } 
+}
+scrollToId();
 
-const sec3 = document.getElementById("s3");
-sec3.scrollIntoView({behavior: "smooth"});
-
-const sec4 = document.getElementById("s4");
-sec4.scrollIntoView({behavior: "smooth"});
